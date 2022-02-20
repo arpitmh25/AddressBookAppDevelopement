@@ -1,9 +1,8 @@
 package com.bridgelabz.addressbookapplication.dto;
-//AddressBook DTO
+
 public class AddressBookDTO {
     private String firstName;
     private String lastName;
-    private String email;
     private long phoneNumber;
     private String city;
     private String state;
@@ -13,12 +12,11 @@ public class AddressBookDTO {
         super();
     }
 
-    public AddressBookDTO(String firstName, String lastName, String email, long phoneNumber, String city, String state,
+    public AddressBookDTO(String firstName, String lastName, long phoneNumber, String city, String state,
                           Integer zip) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
         this.phoneNumber = phoneNumber;
         this.city = city;
         this.state = state;
@@ -41,13 +39,6 @@ public class AddressBookDTO {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public long getPhoneNumber() {
         return phoneNumber;
