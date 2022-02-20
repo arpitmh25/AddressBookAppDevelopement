@@ -17,13 +17,13 @@ public class AddressBookController {
 
     @PostMapping("/postMessage/{firstName}")
     public ResponseEntity<String> postMessage(@PathVariable String firstName, @RequestParam String lastName) {
-        String message = "Hello" + " " + firstName + " " + lastName;
+        String message = "Helloo " + " " + firstName + " " + lastName;
         return new ResponseEntity(message, HttpStatus.OK);
     }
 
     @PutMapping("/putMessage/{name}")
     public ResponseEntity<String> putMessage(@PathVariable String name) {
-        String message = "How's going, " + name;
+        String message = "How's going on, " + name;
         return new ResponseEntity(message, HttpStatus.OK);
     }
 }
