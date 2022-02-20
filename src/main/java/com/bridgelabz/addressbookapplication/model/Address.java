@@ -1,5 +1,5 @@
 package com.bridgelabz.addressbookapplication.model;
-
+//AddressBook Model
 public class Address {
     private Integer id;
     private String firstName;

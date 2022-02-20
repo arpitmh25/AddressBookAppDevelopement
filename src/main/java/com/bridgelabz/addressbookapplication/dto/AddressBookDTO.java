@@ -1,5 +1,5 @@
 package com.bridgelabz.addressbookapplication.dto;
-
+//AddressBook DTO
 public class AddressBookDTO {
     private String firstName;
     private String lastName;
