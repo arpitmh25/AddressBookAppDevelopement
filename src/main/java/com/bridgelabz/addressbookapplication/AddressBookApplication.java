@@ -1,18 +1,20 @@
 package com.bridgelabz.addressbookapplication;
 
 
-import com.mysql.cj.log.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 @Slf4j
 public class AddressBookApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AddressBookApplication.class, args);
-        log.info("AddressBook service app started..! ");
-    }
+        ConfigurableApplicationContext context = SpringApplication
+                                                 .run(AddressBookApplication.class, args);
 
+        log.info("AddressBook app started in the {} Environment", context.getEnvironment().getProperty("environment"));
+    }
 }
+
