@@ -50,9 +50,13 @@ public class AddressService {
 
 
     public Address updateRecordById(Integer id, AddressBookDTO addressBookDTO) {
-        Address newBook = new Address(id, addressBookDTO);
-        repository.save(newBook);
-        return newBook;
+        List<Address> addressList = repository.findAll();
+        Address newAddress = addressList.stream().filter(addressData -> addressData.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new AddressBookException("Specific address book details not found"));
+        Address newAddressBook = new Address(id, addressBookDTO);
+        repository.save(newAddressBook);
+        return newAddressBook;
     }
 
     public String deleteRecordById(Integer id) {
