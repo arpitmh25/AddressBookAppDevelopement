@@ -12,6 +12,8 @@ public class Address {
     @GeneratedValue
     private Integer id;
 
+
+    private String email;
     private String firstName;
     private String lastName;
     private long phoneNumber;
@@ -19,7 +21,7 @@ public class Address {
     private String state;
     private Integer zip;
 
-    public Address() {
+    public Address(Integer id, AddressBookDTO addressBookDTO) {
         super();
     }
 
@@ -30,9 +32,10 @@ public class Address {
         this.city = addressBookDTO.getCity();
         this.state = addressBookDTO.getState();
         this.zip = addressBookDTO.getZip();
+        this.email = addressBookDTO.getEmail();
     }
 
-    public Address(Integer id, String firstName, String lastName, long phoneNumber, String city,
+    public Address(Integer id, String firstName, String lastName, String email, long phoneNumber, String city,
                    String state, Integer zip) {
         super();
         this.id = id;
@@ -42,6 +45,7 @@ public class Address {
         this.city = city;
         this.state = state;
         this.zip = zip;
+        this.email = email;
     }
 
     public Integer getId() {
@@ -99,5 +103,13 @@ public class Address {
 
     public void setZip(Integer zip) {
         this.zip = zip;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

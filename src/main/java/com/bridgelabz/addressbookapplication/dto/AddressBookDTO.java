@@ -7,12 +7,14 @@ public class AddressBookDTO {
     private String city;
     private String state;
     private Integer zip;
+    private String email;
+
 
     public AddressBookDTO() {
         super();
     }
 
-    public AddressBookDTO(String firstName, String lastName, long phoneNumber, String city, String state,
+    public AddressBookDTO(String firstName, String lastName, String email, long phoneNumber, String city, String state,
                           Integer zip) {
         super();
         this.firstName = firstName;
@@ -21,6 +23,7 @@ public class AddressBookDTO {
         this.city = city;
         this.state = state;
         this.zip = zip;
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -37,6 +40,14 @@ public class AddressBookDTO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
 
