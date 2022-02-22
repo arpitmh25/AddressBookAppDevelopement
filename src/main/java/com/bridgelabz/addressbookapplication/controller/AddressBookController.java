@@ -45,7 +45,7 @@ public class AddressBookController {
         return new ResponseEntity(message, HttpStatus.OK);
     }
 
-    //Ability to store a address book record to repo
+    //Ability to store a address book record to repository
     @PostMapping("/create")
     public ResponseEntity<String> saveDataToRepo(@Valid @RequestBody AddressBookDTO addressBookDTO) {
         Address newAddress = service.saveDataToRepo(addressBookDTO);
@@ -53,6 +53,7 @@ public class AddressBookController {
         return new ResponseEntity(responseDTO, HttpStatus.CREATED);
     }
 
+    //Ability to get address book record to repository
     @GetMapping("/get")
     public ResponseEntity<String> getDataFromRepo() {
         List<Address> newAddress = service.getRecord();
@@ -60,6 +61,7 @@ public class AddressBookController {
         return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
     }
 
+    //Ability to get address book record by id
     @GetMapping("/get/{id}")
     public ResponseEntity<String> getRecordFromRepoByID(@PathVariable Integer id) {
         Address newAddress = service.getRecordById(id);
@@ -67,6 +69,7 @@ public class AddressBookController {
         return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
     }
 
+    //Ability to get address book record by firstName
     @GetMapping("/get/{firstName}")
     public ResponseEntity<String> getRecordFromRepoByFirstName(@PathVariable String firstName) {
         List<Address> newAddress = service.getRecordByFirstName(firstName);
@@ -74,6 +77,7 @@ public class AddressBookController {
         return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
     }
 
+    //Ability to get whole address book record to repository
     @GetMapping("/getAll")
     public ResponseEntity<String> getRecordFromRepoByName() {
         List<Address> newAddress = service.getRecordByName();
@@ -81,6 +85,7 @@ public class AddressBookController {
         return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
     }
 
+    //Ability to update address book record to repository
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateRecordById(@PathVariable Integer id, @Valid @RequestBody AddressBookDTO addressBookDTO) {
         Address newAddress = service.updateRecordById(id, addressBookDTO);
@@ -88,6 +93,7 @@ public class AddressBookController {
         return new ResponseEntity(responseDTO, HttpStatus.OK);
     }
 
+    //Ability to delete address book record to repository
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteRecordById(@PathVariable Integer id) {
         ResponseDTO dto = new ResponseDTO("Address Book Record updated successfully", service.deleteRecordById(id));
