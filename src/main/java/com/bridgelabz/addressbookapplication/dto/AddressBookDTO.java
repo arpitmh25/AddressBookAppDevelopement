@@ -10,10 +10,6 @@ public class AddressBookDTO {
     private String email;
 
 
-    public AddressBookDTO() {
-        super();
-    }
-
     public AddressBookDTO(String firstName, String lastName, String email, long phoneNumber, String city, String state,
                           Integer zip) {
         super();
@@ -25,6 +21,7 @@ public class AddressBookDTO {
         this.zip = zip;
         this.email = email;
     }
+
 
     public String getFirstName() {
         return firstName;
@@ -46,9 +43,7 @@ public class AddressBookDTO {
         this.email = email;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email; }
 
 
     public long getPhoneNumber() {
