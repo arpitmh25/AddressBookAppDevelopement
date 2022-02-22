@@ -21,8 +21,18 @@ public class Address {
     private String state;
     private Integer zip;
 
+    public Address() {
+    }
+
     public Address(Integer id, AddressBookDTO addressBookDTO) {
-        super();
+        this.id = id;
+        this.firstName = addressBookDTO.getFirstName();
+        this.lastName = addressBookDTO.getLastName();
+        this.email = addressBookDTO.getEmail();
+        this.phoneNumber = addressBookDTO.getPhoneNumber();
+        this.city = addressBookDTO.getCity();
+        this.state = addressBookDTO.getCity();
+        this.zip = addressBookDTO.getZip();
     }
 
     public Address(AddressBookDTO addressBookDTO) {
