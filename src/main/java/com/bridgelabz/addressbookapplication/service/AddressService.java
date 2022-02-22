@@ -36,9 +36,9 @@ public class AddressService {
         return newAddress;
     }
 
-    public Optional<Address> getRecordById(Integer id) {
-        Optional<Address> addressBook = repository.findById(id);
-        return addressBook;
+    public Address getRecordById(Integer id) {
+        Address address = repository.getById(id);
+        return address;
     }
 
     public List<Address> getRecord() {

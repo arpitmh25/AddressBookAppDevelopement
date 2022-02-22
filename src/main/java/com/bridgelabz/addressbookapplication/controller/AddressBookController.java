@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/addressbook")
@@ -62,7 +61,7 @@ public class AddressBookController {
 
     @GetMapping("/get/{id}")
     public ResponseEntity<String> getRecordFromRepoByID(@PathVariable Integer id) {
-        Optional<Address> newAddress = service.getRecordById(id);
+        Address newAddress = service.getRecordById(id);
         ResponseDTO responseDTO = new ResponseDTO("Address Book Record for particular id retrieved successfully", newAddress);
         return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
     }
