@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbookapplication.service;
 
 import com.bridgelabz.addressbookapplication.dto.AddressBookDTO;
+import com.bridgelabz.addressbookapplication.exception.AddressBookException;
 import com.bridgelabz.addressbookapplication.model.Address;
 import com.bridgelabz.addressbookapplication.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,11 @@ public class AddressService {
     }
 
     public Address getRecordById(Integer id) {
-        Address address = repository.getById(id);
-        return address;
+        List<Address> addressList = repository.findAll();
+        Address newAddress = addressList.stream().filter(addressData -> addressData.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new AddressBookException("Specific address book details not found"));
+        return newAddress;
     }
 
     public List<Address> getRecord() {
@@ -61,7 +65,11 @@ public class AddressService {
     }
 
     public String deleteRecordById(Integer id) {
-        repository.deleteById(id);
+        List<Address> addressList = repository.findAll();
+        Address newAddress = addressList.stream().filter(addressData -> addressData.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new AddressBookException("Specific address book details not found"));
+        repository.delete(newAddress);
         return null;
     }
 
