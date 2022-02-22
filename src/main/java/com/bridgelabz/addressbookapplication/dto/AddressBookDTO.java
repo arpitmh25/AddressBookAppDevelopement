@@ -2,6 +2,7 @@ package com.bridgelabz.addressbookapplication.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class AddressBookDTO {
@@ -16,7 +17,7 @@ public class AddressBookDTO {
     @Email
     private String email;
 
-    @NotEmpty(message = "Phone number cant be empty")
+    @NotNull(message = "Phone number cant be empty")
     private long phoneNumber;
 
     @NotEmpty(message = "city cant be empty")
@@ -24,7 +25,7 @@ public class AddressBookDTO {
 
     @NotEmpty(message = "State cant be empty")
     private String state;
-    @NotEmpty(message = "zip cant be empty")
+    @NotNull(message = "zip cant be empty")
     private Integer zip;
 
 

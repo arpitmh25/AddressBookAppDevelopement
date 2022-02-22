@@ -3,6 +3,7 @@ package com.bridgelabz.addressbookapplication.controller;
 
 import com.bridgelabz.addressbookapplication.dto.AddressBookDTO;
 import com.bridgelabz.addressbookapplication.dto.ResponseDTO;
+import com.bridgelabz.addressbookapplication.exception.AddressBookException;
 import com.bridgelabz.addressbookapplication.model.Address;
 import com.bridgelabz.addressbookapplication.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,31 +64,16 @@ public class AddressBookController {
 
     //Ability to get address book record by id
     @GetMapping("/get/{id}")
-    public ResponseEntity<String> getRecordFromRepoByID(@PathVariable Integer id) {
+    public ResponseEntity<String> getRecordFromRepoByID(@PathVariable Integer id) throws AddressBookException {
         Address newAddress = service.getRecordById(id);
         ResponseDTO responseDTO = new ResponseDTO("Address Book Record for particular id retrieved successfully", newAddress);
         return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
     }
 
-    //Ability to get address book record by firstName
-    @GetMapping("/get/{firstName}")
-    public ResponseEntity<String> getRecordFromRepoByFirstName(@PathVariable String firstName) {
-        List<Address> newAddress = service.getRecordByFirstName(firstName);
-        ResponseDTO responseDTO = new ResponseDTO("Address Book Record for particular firstName retrieved successfully", newAddress);
-        return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
-    }
-
-    //Ability to get whole address book record to repository
-    @GetMapping("/getAll")
-    public ResponseEntity<String> getRecordFromRepoByName() {
-        List<Address> newAddress = service.getRecordByName();
-        ResponseDTO responseDTO = new ResponseDTO("Address Book Record for particular name retrieved successfully", newAddress);
-        return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
-    }
 
     //Ability to update address book record to repository
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> updateRecordById(@PathVariable Integer id, @Valid @RequestBody AddressBookDTO addressBookDTO) {
+    public ResponseEntity<String> updateRecordById(@PathVariable Integer id, @Valid @RequestBody AddressBookDTO addressBookDTO) throws AddressBookException {
         Address newAddress = service.updateRecordById(id, addressBookDTO);
         ResponseDTO responseDTO = new ResponseDTO("Address Book Record updated successfully", newAddress);
         return new ResponseEntity(responseDTO, HttpStatus.OK);
@@ -95,7 +81,7 @@ public class AddressBookController {
 
     //Ability to delete address book record to repository
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteRecordById(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteRecordById(@PathVariable Integer id) throws AddressBookException {
         ResponseDTO dto = new ResponseDTO("Address Book Record updated successfully", service.deleteRecordById(id));
         return new ResponseEntity(dto, HttpStatus.OK);
     }
