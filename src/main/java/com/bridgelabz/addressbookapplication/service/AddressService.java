@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AddressService {
@@ -49,14 +48,6 @@ public class AddressService {
         return repository.findAll();
     }
 
-    public List<Address> getRecordByFirstName(String firstName) {
-        List<Address> list = repository.findByFirstName(firstName);
-        return list;
-    }
-
-    public List<Address> getRecordByName() {
-        return repository.findAllData();
-    }
 
     public Address updateRecordById(Integer id, AddressBookDTO addressBookDTO) {
         Address newBook = new Address(id, addressBookDTO);

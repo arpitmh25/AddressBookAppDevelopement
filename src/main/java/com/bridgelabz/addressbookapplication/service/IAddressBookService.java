@@ -21,9 +21,6 @@ public interface IAddressBookService {
 
     public List<Address> getRecord();
 
-    public List<Address> getRecordByFirstName(String firstName);
-
-    public List<Address> getRecordByName();
 
     public Address updateRecordById(Integer id, AddressBookDTO addressBookDTO);
 
