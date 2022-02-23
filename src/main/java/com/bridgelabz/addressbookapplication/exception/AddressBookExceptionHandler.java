@@ -11,7 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-
+//Created to handle controller class exception
 @ControllerAdvice
 public class AddressBookExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)

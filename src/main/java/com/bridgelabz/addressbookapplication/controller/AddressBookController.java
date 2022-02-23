@@ -5,7 +5,7 @@ import com.bridgelabz.addressbookapplication.dto.AddressBookDTO;
 import com.bridgelabz.addressbookapplication.dto.ResponseDTO;
 import com.bridgelabz.addressbookapplication.exception.AddressBookException;
 import com.bridgelabz.addressbookapplication.model.Address;
-import com.bridgelabz.addressbookapplication.service.AddressService;
+import com.bridgelabz.addressbookapplication.service.IAddressBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,31 +13,16 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
+//Created controller so that we can perform rest api calls
 @RestController
 @RequestMapping("/addressbook")
 
 public class AddressBookController {
+    //Autowired IAddressBookService interface so we can inject its dependency here
     @Autowired
-    AddressService service;
-
-    @GetMapping("/getMessage")
-    public ResponseEntity<String> getMessage(@RequestParam String name) {
-        String message = service.getMessage(name);
-        return new ResponseEntity(message, HttpStatus.OK);
-    }
-
-    @PostMapping("/postMessage")
-    public ResponseEntity<String> postMessage(@RequestBody Address address) {
-        String message = service.postMessage(address);
-        return new ResponseEntity(message, HttpStatus.OK);
-    }
-
-    @GetMapping("/putMessage/{name}")
-    public ResponseEntity<String> putMessage(@PathVariable String name) {
-        String message = service.putMessage(name);
-        return new ResponseEntity(message, HttpStatus.OK);
-    }
+    IAddressBookService service;
 
     //Ability to get welcome message
     @GetMapping("/welcome")
@@ -46,7 +31,7 @@ public class AddressBookController {
         return new ResponseEntity(message, HttpStatus.OK);
     }
 
-    //Ability to store a address book record to repository
+    //Ability to store a address  record to repository
     @PostMapping("/create")
     public ResponseEntity<String> saveDataToRepo(@Valid @RequestBody AddressBookDTO addressBookDTO) {
         Address newAddress = service.saveDataToRepo(addressBookDTO);
@@ -54,7 +39,7 @@ public class AddressBookController {
         return new ResponseEntity(responseDTO, HttpStatus.CREATED);
     }
 
-    //Ability to get address book record to repository
+    //Ability to get all record from repository
     @GetMapping("/get")
     public ResponseEntity<String> getDataFromRepo() {
         List<Address> newAddress = service.getRecord();
@@ -62,16 +47,16 @@ public class AddressBookController {
         return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
     }
 
-    //Ability to get address book record by id
+    //Ability to get address  record by id
     @GetMapping("/get/{id}")
     public ResponseEntity<String> getRecordFromRepoByID(@PathVariable Integer id) throws AddressBookException {
-        Address newAddress = service.getRecordById(id);
+        Optional<Address> newAddress = Optional.ofNullable(service.getRecordById(id));
         ResponseDTO responseDTO = new ResponseDTO("Address Book Record for particular id retrieved successfully", newAddress);
         return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
     }
 
 
-    //Ability to update address book record to repository
+    //Ability to update addressbook record to repository
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateRecordById(@PathVariable Integer id, @Valid @RequestBody AddressBookDTO addressBookDTO) throws AddressBookException {
         Address newAddress = service.updateRecordById(id, addressBookDTO);
