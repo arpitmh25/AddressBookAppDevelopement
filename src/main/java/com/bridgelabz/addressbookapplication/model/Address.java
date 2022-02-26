@@ -12,24 +12,27 @@ import javax.persistence.Id;
 //Use to bundle features of getter and setter
 @Data
 
-//Created AddressBook class with different fields
+//Created Address class with different fields
 public class Address {
     @Id
     @GeneratedValue
     private Integer id;
 
 
-    private String email;
     private String firstName;
     private String lastName;
+    private String email;
     private long phoneNumber;
     private String city;
     private String state;
     private Integer zip;
 
+    //Default
     public Address() {
+        super();
     }
 
+    //Created constructor for updatedataby id method
     public Address(Integer id, AddressBookDTO addressBookDTO) {
         this.id = id;
         this.firstName = addressBookDTO.getFirstName();
@@ -37,10 +40,11 @@ public class Address {
         this.email = addressBookDTO.getEmail();
         this.phoneNumber = addressBookDTO.getPhoneNumber();
         this.city = addressBookDTO.getCity();
-        this.state = addressBookDTO.getCity();
+        this.state = addressBookDTO.getState();
         this.zip = addressBookDTO.getZip();
     }
 
+    //Created constructor for savedatatorepo method
     public Address(AddressBookDTO addressBookDTO) {
         this.firstName = addressBookDTO.getFirstName();
         this.lastName = addressBookDTO.getLastName();
