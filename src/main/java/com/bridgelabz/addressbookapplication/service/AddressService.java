@@ -40,7 +40,7 @@ public class AddressService implements IAddressBookService {
         Address newAddress = new Address(addressBookDTO);
         repository.save(newAddress);
         String token = tokenutil.createToken(newAddress.getId());
-        sender.sendEmail("arpitmh25@gmail.com", "Test Email", "Registered SuccessFully, Hi "
+        sender.sendEmail(newAddress.getEmail(), "Test Email", "Registered SuccessFully, Hi "
                 + newAddress.getFirstName() + " click here -> " +
                 "http://localhost:8080/addressbook/getAll/" + token);
         return token;
@@ -85,7 +85,7 @@ public class AddressService implements IAddressBookService {
         }
         Address newBook = new Address(id, addressBookDTO);
         repository.save(newBook);
-        sender.sendEmail("arpitmh25@gmail.com", "Test Email", "Updated SuccessFully, Hi "
+        sender.sendEmail(newBook.getEmail(), "Test Email", "Updated SuccessFully "
                 + newBook.getFirstName() + " click here -> " +
                 "http://localhost:8080/addressbook/getAll/" + token);
         return newBook;
@@ -100,7 +100,7 @@ public class AddressService implements IAddressBookService {
             throw new AddressBookException("Address Book Details not found");
         } else {
             repository.deleteById(id);
-            sender.sendEmail("arpitmh25@gmail.com", "Test Email", "Deleted SuccessFully.. "
+            sender.sendEmail(newAddressBook.get().getEmail(), "Test Email", "Deleted SuccessFully.. "
                     + newAddressBook.get() + " click here -> " +
                     "http://localhost:8080/addressbook/getAll/" + token);
         }
